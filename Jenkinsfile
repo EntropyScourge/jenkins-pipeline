@@ -2,11 +2,12 @@ pipeline {
     agent any
     tools { go 'go-1.24' }
 
-    stages {
-        environment {
+    environment {
             ENV = "${env.BRANCH_NAME == 'master' ? 'PROD' : 'DEV'}"
             BRANCH = "${env.BRANCH_NAME}"
         }
+
+    stages {
         stage ('Clean Up'){
             steps {
                 echo 'Cleaning workspace...'
