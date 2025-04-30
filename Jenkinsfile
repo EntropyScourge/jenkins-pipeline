@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Add your build steps here
-                sh "ls ../"
+                sh "pwd"
                 sh "bash scripts/build.sh"
             }
         }
