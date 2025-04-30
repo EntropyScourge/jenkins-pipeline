@@ -15,6 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                // Add your build steps here
                 sh "build.sh"
             }
         }
@@ -22,6 +23,7 @@ pipeline {
             steps {
                 echo 'Testing...'
                 // Add your test steps here
+                sh "test.sh"
             }
         }
         stage('Deploy') {
