@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools { go 'go-1.19' }
+    tools { go 'go-1.24' }
 
     stages {
         environment {
