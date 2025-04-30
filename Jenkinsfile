@@ -5,6 +5,7 @@ pipeline {
     environment {
             ENV = "${env.BRANCH_NAME == 'master' ? 'PROD' : 'DEV'}"
             BRANCH = "${env.BRANCH_NAME}"
+            LANG = en_US.UTF-8
         }
 
     stages {
