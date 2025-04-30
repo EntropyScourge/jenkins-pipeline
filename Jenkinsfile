@@ -15,17 +15,14 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Add your build steps here
-                // dir('jenkins-pipeline') {
-                //     // Assuming you have a build script in the cloned repo
-                //     sh "chmod +x build.sh" // Make sure the script is executable
-                // }
-                // sh "cd jenkins-pipeline && ./build.sh"
+                sh "build.sh"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
                 // Add your test steps here
+                sh "test.sh"
             }
         }
         stage('Deploy') {
