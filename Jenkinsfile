@@ -1,12 +1,13 @@
 pipeline {
     agent any
-    tools { go 'go-1.24' }
 
     environment {
             ENV = "${env.BRANCH_NAME == 'master' ? 'PROD' : 'DEV'}"
             BRANCH = "${env.BRANCH_NAME}"
             LANG = "en_US.UTF-8"
         }
+
+    tools { go 'go-1.24' }
 
     stages {
         stage ('Clean Up'){
