@@ -4,7 +4,7 @@ pipeline {
 
     stages {
         environment {
-            ENV = "${env.BRANCH_NAME == 'master' ? 'PROD' : DEV'}"
+            ENV = "${env.BRANCH_NAME == 'master' ? 'PROD' : 'DEV'}"
             BRANCH = "${env.BRANCH_NAME}"
         }
         stage ('Clean Up'){
