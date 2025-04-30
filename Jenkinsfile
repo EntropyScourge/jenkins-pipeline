@@ -2,6 +2,9 @@ pipeline {
     agent any
 
     stages {
+        environment {
+            ENV = 'DEV'
+        }
         stage ('Clean Up'){
             steps {
                 echo 'Cleaning workspace...'
