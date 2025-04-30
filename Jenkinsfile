@@ -2,6 +2,10 @@ pipeline {
     agent any
 
     stages {
+        environment {
+            // Define any environment variables here
+            ENV = 'PROD'
+        }
         stage ('Clean Up'){
             steps {
                 echo 'Cleaning workspace...'
@@ -11,12 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Add your build steps here
-                // dir('jenkins-pipeline') {
-                //     // Assuming you have a build script in the cloned repo
-                //     sh "chmod +x build.sh" // Make sure the script is executable
-                // }
-                // sh "cd jenkins-pipeline && ./build.sh"
+                sh "build.sh"
             }
         }
         stage('Test') {
