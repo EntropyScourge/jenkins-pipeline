@@ -10,12 +10,12 @@ pipeline {
     tools { go 'go-1.24' }
 
     stages {
-        stage ('Clean Up'){
-            steps {
-                echo 'Cleaning workspace...'
-                deleteDir() // Clean up the workspace before starting the build
-            }
-        }
+        // stage ('Clean Up'){
+        //     steps {
+        //         echo 'Cleaning workspace...'
+        //         deleteDir() // Clean up the workspace before starting the build
+        //     }
+        // }
         stage('Build') {
             steps {
                 echo 'Building...'
