@@ -18,6 +18,7 @@ pipeline {
         // }
         stage('Build') {
             steps {
+                slackSend color: "good", message: "Build started for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
                 echo 'Building...'
                 // Add your build steps here
                 sh "pwd"
