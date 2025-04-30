@@ -20,14 +20,14 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Add your build steps here
-                sh "scripts/build.sh"
+                sh "./scripts/build.sh"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
                 // Add your test steps here
-                sh "scripts/test.sh"
+                sh "./scripts/test.sh"
             }
         }
         stage('Deploy') {
