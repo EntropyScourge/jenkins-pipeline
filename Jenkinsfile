@@ -1,9 +1,11 @@
 pipeline {
     agent any
+    tools { go 'go-1.19' }
 
     stages {
         environment {
-            ENV = 'DEV'
+            ENV = "${env.BRANCH_NAME == 'master' ? 'PROD' : DEV'}"
+            BRANCH = "${env.BRANCH_NAME}"
         }
         stage ('Clean Up'){
             steps {
@@ -15,14 +17,14 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Add your build steps here
-                sh "build.sh"
+                sh "scripts/build.sh"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
                 // Add your test steps here
-                sh "test.sh"
+                sh "scripts/test.sh"
             }
         }
         stage('Deploy') {
