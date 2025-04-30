@@ -23,20 +23,25 @@ pipeline {
                 // Add your build steps here
                 sh "pwd"
                 sh "bash scripts/build.sh"
+                slackSend color: "good", message: "Build completed for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
             }
         }
         stage('Test') {
             steps {
+                slackSend color: "good", message: "Tests started for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
                 echo 'Testing...'
                 // Add your test steps here
                 sh "bash scripts/test.sh"
+                slackSend color: "good", message: "Tests completed for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
             }
         }
         stage('Deploy') {
             steps {
+                slackSend color: "good", message: "Deployment started for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
                 echo 'Deploying...'
                 // Add your deployment steps here
                 sh "export JENKINS_NODE_COOKIE=do_not_kill ; bash scripts/deploy.sh"
+                slackSend color: "good", message: "Deployment completed for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
             }
         }
     }
@@ -45,6 +50,9 @@ pipeline {
         always {
             echo 'Cleaning up...'
             // Add cleanup steps here
+        }
+        success {
+            slackSend color: "good", message: "Pipeline succeeded on branch ${env.BRANCH_NAME}"
         }
     }
 }
