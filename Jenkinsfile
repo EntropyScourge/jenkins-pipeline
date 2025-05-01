@@ -16,6 +16,25 @@ pipeline {
         //         deleteDir() // Clean up the workspace before starting the build
         //     }
         // }
+        stage('Initialize') {
+            steps {
+                slackSend color: "good", message: "Pipeline started for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
+                echo 'Initializing pipeline...'
+            }
+        }
+        stage('Scan secrets') {
+            steps {
+                slackSend color: "good", message: "Secret scanning started for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
+                echo 'Scanning for secrets...'
+                sh '''curl -LO https://github.com/gitleaks/gitleaks/archive/refs/tags/v8.25.1.tar.gz
+                tar -xzf gitleaks-8.25.1.tar.gz
+                ./gitleaks protect -v
+                rm -rf gitleaks*
+                '''
+                // '''
+                slackSend color: "good", message: "Secret scanning completed for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
+            }
+        }
         stage('Build') {
             steps {
                 slackSend color: "good", message: "Build started for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
