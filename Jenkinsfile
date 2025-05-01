@@ -27,9 +27,9 @@ pipeline {
                 slackSend color: "good", message: "Secret scanning started for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
                 echo 'Scanning for secrets...'
                 sh '''curl -LO https://github.com/gitleaks/gitleaks/archive/refs/tags/v8.25.1.tar.gz
-                ls
                 tar -xzf v8.25.1.tar.gz
-                v8.25.1/gitleaks*/gitleaks protect -v
+                ls
+                v8.25.1/gitleaks-8.25.1/gitleaks protect -v
                 rm -rf v8.25.1*
                 '''
                 // '''
