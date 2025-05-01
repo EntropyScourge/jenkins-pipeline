@@ -29,7 +29,7 @@ pipeline {
                 sh '''curl -LO https://github.com/gitleaks/gitleaks/archive/refs/tags/v8.25.1.tar.gz
                 tar -xzf v8.25.1.tar.gz
                 ls
-                v8.25.1/gitleaks-8.25.1/gitleaks protect -v
+                ./gitleaks-8.25.1/gitleaks protect -v
                 rm -rf v8.25.1
                 '''
                 // '''
