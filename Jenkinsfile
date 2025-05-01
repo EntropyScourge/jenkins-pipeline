@@ -30,7 +30,7 @@ pipeline {
                 tar -xzf v8.25.1.tar.gz
                 ls
                 v8.25.1/gitleaks-8.25.1/gitleaks protect -v
-                rm -rf v8.25.1*
+                rm -rf v8.25.1
                 '''
                 // '''
                 slackSend color: "good", message: "Secret scanning completed for ${env.JOB_NAME} - ${env.BUILD_NUMBER} on branch ${env.BRANCH_NAME}"
